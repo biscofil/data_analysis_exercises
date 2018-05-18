@@ -1,0 +1,9 @@
+---
+title: "C4"
+author: "filippo"
+date: "10 May 2018"
+output: pdf_document
+---
+
+# Es 4. (tratto da Wasserman)
+Sia $n=50$ e $$T(F)=\int{(y - \mu)^3 dF (y)/\sigma^3}$$ l'indice di asimmetria (con $\mu=\int{udF (y)}$ e $\sigma = \int{y^2dF(y)} - \mu^2)$ e $X_1 , \ldots , X_n$ un campione bernoulliano da una v.c. $N(0,1)$ e si ponga $Y_i = e^{X_i}$ . Costruite i tre tipi di intervalli di confidenza basati del bootstrap per $T(F)$.

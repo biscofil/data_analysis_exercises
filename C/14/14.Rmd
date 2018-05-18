@@ -1,0 +1,25 @@
+---
+title: "c14"
+author: "filippo"
+date: "18 May 2018"
+output: pdf_document
+---
+
+# Es 14.
+Il file ```kevlar90.txt``` contiene dei dati sulla resistenza del Kevlar 49/epoxy un materiale utilizzato nello Space Shuttle. 
+Vengono riportati in tempi di resistenza (in ore) di 101 fili testati ad un livello di stress del 90%.
+
+## (a)
+Si analizzino i dati per evidenziare se vi sono dati anomali.
+
+## (b)
+Si adatti una distribuzione parametrica ai dati chiarendo le ipotesi sottostanti.
+
+## (c)
+Si confronti la distribuzione parametrica stimata con la distribuzione empirica.
+
+## (d)
+Si utilizzi la teoria asintotica per lo stimatore di massima verosimiglianza per ottenere un intervallo di confidenza per il parametro
+
+## (e)
+Si utilizzi il bootstrap parametrico per ottenere un intervallo di confidenza per il parametro

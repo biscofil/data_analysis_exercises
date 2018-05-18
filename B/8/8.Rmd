@@ -1,0 +1,44 @@
+---
+title: "B8"
+author: "filippo"
+date: "17 May 2018"
+output: pdf_document
+---
+
+# Esercizio 8.
+
+Un amministratore ospedaliero che spera di migliorare i tempi di attesa decide di stimare il tempo medio di attesa del pronto soccorso nel suo ospedale. Raccoglie un campione casuale di ```64``` pazienti e determina il tempo (in minuti) tra il momento del check-in al pronto soccorso fino a quando i pazienti non sono stati visti per la prima volta da un medico. Un intervallo di confidenza del ```95%``` basato su questo campione è ```(128 minuti, 147 minuti)```, che si basa sul modello **normale** per la media.
+
+**Determina se le seguenti affermazioni sono vere o false e spiega il tuo ragionamento.**
+
+## (a)
+Questo intervallo di confidenza non è valido poiché non sappiamo se la distribuzione della popolazione dei tempi di attesa ER sia quasi normale.
+
+**FALSO**, 
+
+## (b)
+Siamo confidenti al 95% che il tempo medio di attesa di questi 64 pazienti del pronto soccorso sia tra i 128 e i 147 minuti.
+
+**FALSO**, l'intervallo di confidenza si riferisce alla distribuzione da stimare. Per effettuare considerazioni solamente sul nostro campione non è necessaria inferenza e possiamo fornire valori precisi (campionari, che non descrivono la vera distribuzione) senza necessità di approssimazioni
+
+## (c)
+Siamo confidenti al 95% che il tempo medio di attesa di tutti i pazienti nel pronto soccorso di questo ospedale sia tra i 128 e i 147 minuti.
+
+
+## (d)
+il 95% dei campioni casuali ha una media campionaria compresa tra 128 e 147 minuti. 
+
+**VERO**, 
+
+## (e)
+Un intervallo di confidenza del 99% sarebbe più ristretto dell’intervallo di confidenza del 95% poiché dovremmo essere più sicuri della nostra stima.
+
+**FALSO**, all'aumentare della confidenza, l'intervallo si allarga
+
+## (f)
+Il margine di errore è 9.5 e la media campionaria è 137.5.
+
+## (g)
+Al fine di ridurre il margine di errore di un intervallo di confidenza del 95% a metà di quello che è ora, dovremmo raddoppiare la dimensione del campione.
+
+

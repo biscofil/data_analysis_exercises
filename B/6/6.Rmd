@@ -1,0 +1,40 @@
+---
+title: "B6"
+author: "filippo"
+date: "5 April 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Siano $Y_1, ..., Y_n$ , n variabili casuali i.i.d. **normali** con valore atteso $\theta$ e varianza $\theta^2$ e si considerino i seguenti stimatori di $\theta$:  
+
+$T_1 = \frac{Y_1+(n-1)Y_n}{n}$  
+$T_2 = \frac{Y_1+...+Y_{n-1}}{n} = \frac{\sum^{n-1}_{i=1}{Y_i}}{n}$  
+
+**(a) Dite quale dei due stimatori risulta preferibile secondo il criterio dell’errore quadratico medio.**  
+
+$Mse(Y) = se(Y)^2 + Bias(Y)^2 = Var(Y) + Bias(Y)^2$  
+
+Ricordiamo che in una v.c. normale abbiamo la seguente caratteristica: $E(Y) = \theta$
+
+$E(T_1)=\frac{E(Y)+(n-1)E(Y)}{n}=\frac{\theta+(n-1)\theta}{n}=\frac{n\theta}{n}=\theta$
+Il primo stimatore sarà quindi non distorto
+
+$E(T_2)=\frac{\sum^{n-1}_{i=1}{E(Y)}}{n} = \frac{(n-1)\theta}{n}$  
+$Bias(T_2)=\frac{(n-1)\theta}{n}-\theta=\frac{(n-1)\theta-n\theta}{n}=-\frac{\theta}{n}$
+  
+  
+Ricordiamo che in una v.c. normale abbiamo la seguente caratteristica: $Var(Y) = \theta^2$  
+$Var(T_1)=\frac{Var(Y)+(n-1)^2Var(Y)}{n^2}=\frac{\theta^2+(n-1)^2\theta^2}{n^2}=\frac{\theta^2(1+(n-1)^2)}{n^2}=\frac{\theta^2(n^2-2n+2)}{n^2}$  
+$Var(T_2)=\frac{\sum^{n-1}_{i=1}{Var(Y)}}{n^2} = \frac{(n-1)\theta^2}{n^2}$  
+
+$Var(T_1) > Var(T_2) = \frac{\theta^2(n^2-2n+2)}{n^2} > \frac{(n-1)\theta^2}{n^2}$  
+
+$Mse(T_1)=Var(T_1)=\frac{\theta^2(1+(n-1)^2)}{n^2}=\frac{\theta^2(n^2-2n+2)}{n^2}$  
+
+$Mse(T_2)=Var(T_2) + Bias(T_2)^2=\frac{(n-1)\theta^2}{n^2} + (-\frac{\theta}{n})^2=\frac{(n-1)\theta^2+\theta^2}{n^2} = \frac{n\theta^2}{n^2} = \frac{\theta^2}{n}$
+
+Con n sufficientemente grande, $Mse(T_1) > Mse(T_2) = \frac{\theta^2(n^2-2n+2)}{n^2} > \frac{n\theta^2}{n^2}$. Risulta quindi che $T_2$ è più preciso.

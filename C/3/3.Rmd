@@ -1,0 +1,27 @@
+---
+title: "C3"
+author: "filippo"
+date: "10 May 2018"
+output: pdf_document
+---
+
+# Es 3. Billings
+Si considerino i dati contenuti nel file `billings.txt` e si voglia costruire un intervallo di confidenza del 90% per la varianza.
+
+```{r}
+billings <- scan('billings.txt',sep = " ") #Uso scan poichè non sono linea per linea 
+
+alpha <- 0.1
+qnorm(1-alpha/2)
+```
+
+## (a)
+Valutate la distorsione dei due stimatori
+$$
+T_1 = \frac{1}{n} \sum_{i=1}^n{(Y_i - \overline{Y})^2},
+\\
+T_2 = \frac{1}{n-1} \sum_{i=1}^n{(Y_i - \overline{Y})^2}
+$$
+
+## (b)
+Costruite gli intervalli di confidenza per $T_1,T_2$ basati sui percentili

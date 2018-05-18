@@ -1,0 +1,80 @@
+---
+title: "C19"
+author: "filippo"
+date: "May 3, 2018"
+output: pdf_document
+---
+
+# Es 19 - USStates
+Si consideri il file ```USStates.csv```
+
+```{r,echo=FALSE}
+us <- read.csv("../USStates.csv", header = TRUE, sep = ',')
+```
+
+## (a) 
+Si utilizzi la *library* per disegnare un opportuno grafico della variabile Smokers, la percentuale di residenti che fuma. Si commenti la forma della distribuzione e il suo valore centrale.
+
+```{r}
+hist(us$Smokers)
+```
+
+## (b) 
+Si calcoli la proporzione media di fumatori
+
+```{r}
+```
+
+## (c) 
+Si scriva una funzione in R che estrae 10000 campioni casuali di 5 stati and ritorna come output la proporzione media di fumatori per ogni campione. Si salvi l’output in un vettore estimates
+
+```{r}
+```
+
+## (d) 
+Cosa rappresenta l’output di tale funzione ?
+
+```{r}
+```
+
+## (e) 
+Si calcoli la media aritmetica e lo scarto quadratico medio di estimates e utilizzate ggplot2 per rappresentare la densit`a e la funzione di ripartizione empirica. Si commenti la forma della distribuzione e il suo valore centrale.
+
+```{r}
+```
+
+## (f) 
+Quale dovrebbe essere la relazione teorica tra lo scarto quadratico di Smokers e estimates. Vi sembra rispettata empiricamente ?
+
+```{r}
+```
+
+## (g) 
+Un campione di cinque stati è Arkansas, Florida, Pennsylvania, California, e Vermont. Si calcoli la proporzione media di questi stati.
+
+```{r}
+```
+
+## (h) 
+Si utilizzi il valore ricavato per costruire un intervallo di confidenza di livello 95% della proporzione media dei fumatori
+
+```{r}
+```
+
+## (i) 
+L’intervallo contiene la ’vera’ proporzione media.
+
+```{r}
+```
+
+## (j) 
+Quale proporzione dei 10000 valori di estimates in realtà contiene il vero valore ?
+
+```{r}
+```
+
+## (k) 
+Quale proporzione ci si attende ? Si è vicini a questo valore
+
+```{r}
+```

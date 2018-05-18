@@ -1,0 +1,25 @@
+---
+title: "C1""
+author: "filippo"
+date: "10 May 2018"
+output: pdf_document
+---
+
+# Es 1. 
+Sia dato un campione bernoulliano $Y_1 , \ldots , Y_n , n \geq 2$, da una variabile casuale Y uniforme nell’intervallo $(0, \Theta), \Theta > 0$.
+
+## (a)
+Trovare lo stimatore di $\Theta$ secondo il metodo dei momenti.
+
+## (b)
+Sia $T_1$ lo stimatore calcolato al punto precedente, calcolare $EQM(T_1)$.
+
+## (c)
+Mostrare che lo stimatore è consistente.
+
+## (d)
+Trovare la costante a per cui lo stimatore
+$$T_2 = \frac{Y_1 + aY_n}{n}$$ è uno stimatore non distorto.
+
+## (e)
+Se $T_2$ è lo stimatore non distorto, mostrare quale stimatore tra $T_1$ e $T_2$ è più efficiente.

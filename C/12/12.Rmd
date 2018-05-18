@@ -1,0 +1,104 @@
+---
+title: "C12"
+author: "filippo"
+date: "26 April 2018"
+output: 
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Consegna
+
+Il file KNMI_20160831.txt contiene le precipitazioni giornaliere rilevate dal 1906 al 2016 nella
+stazione di De Bilt (Olanda)
+
+```{r, echo=FALSE}
+de_bilt <- read.table(file = '../KNMI_20160831.txt',header = FALSE, skip = 12,sep = ',')
+names(de_bilt) <- c("station","yyymmdd","rainfall")
+```
+
+##(a) Si estraggano tutte le rilevazioni giornaliere rispetto al mese di aprile
+
+```{r}
+mese <- substr(de_bilt$yyymmdd,5,6)
+sel<-mese == "04"
+y <- de_bilt$rainfall[sel]
+```
+
+##(b) Si analizzino i dati per evidenziare se vi sono dati anomali.
+
+```{r}
+summary(y)
+
+y[y < 0] <- 0
+summary(y)
+
+boxplot(y)
+hist(y)
+
+mean(y > 0,na.rm = TRUE)
+
+```
+
+##(c) Si adatti una distribuzione parametrica ai dati chiarendo le ipotesi sottostanti.
+
+Cerco due distribuzioni, una che mi determini la presenza/assenza e una che determini la quantità.
+
+```{r}
+x <- y[y > 0]
+boxplot(x)
+hist(x)
+
+plot(ecdf(x))
+
+quantile(x,prob=0.9,na.rm = TRUE)
+
+library(fitdistrplus)
+
+z <- as.numeric(na.omit(x))
+```
+
+###Modello la quantità di pioggia con una distribuzione esponenziale
+
+```{r}
+
+fitmle <- fitdist(z, distr = "exp")
+fitmle
+plot(fitmle)
+
+lambda <- fitmle$estimate
+lambda
+
+pexp(200,lambda)
+1-pexp(200,lambda)
+```
+
+
+###Modello la quantità di pioggia con una distribuzione gamma
+
+```{r}
+
+fitmle <- fitdist(z, distr = "gamma")
+fitmle
+plot(fitmle)
+
+```
+
+##(d) Si confronti la distribuzione parametrica stimata con la distribuzione empirica.
+
+```{r}
+```
+
+##(e) Si considerino ora le medie mensili e si ripeta l’analisi
+
+```{r}
+```
+
+##(f) Quale teorema della probabilità entra in gioco ?
+
+```{r}
+```

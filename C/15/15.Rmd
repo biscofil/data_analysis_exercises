@@ -1,0 +1,31 @@
+---
+title: "c15"
+author: "filippo"
+date: "18 May 2018"
+output: pdf_document
+---
+
+# Esercizio 15. 
+I file ```haliburton.txt``` e ```macdonalds.txt``` contengono i rendimenti mensili sulle azioni di queste due compagnie dal 1975 al 1999.
+
+## (a)
+Si analizzino i dati per evidenziare se vi sono dati anomali.
+
+## (b)
+Si adatti una distribuzione parametrica ai dati chiarendo le ipotesi sottostanti.
+
+## (c)
+Si confronti la distribuzione parametrica stimata con la distribuzione empirica.
+
+## (d)
+In finanza si è interessati alla volatilità del titolo misurata attraverso la sua varianza e il suo scarto interquartile. 
+Si calcoli una stima delle due quantità.
+
+## (e)
+Quale delle due compagnie risulta più variabile ?
+
+## (f)
+Si utilizzi il bootstrap non parametrico per ottenere un intervallo di confidenza per lo scarto interquartile.
+
+## (g)
+Si utilizzi il bootstrap parametrico per ottenere un intervallo di confidenza per lo scarto interquartile.

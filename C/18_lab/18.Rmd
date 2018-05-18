@@ -1,0 +1,33 @@
+---
+title: "C18"
+author: "filippo"
+date: "May 3, 2018"
+output: pdf_document
+---
+
+# Es 18. 
+Due ricercatori hanno esaminato il colore nelle piume della coda di 16 esemplari di una specie di picchio. Gli uccelli avevano una piuma ”singolare” (Odd) che era di colore o lunghezza diversa dal resto del piumaggio della coda, probabilmente perché era ricresciuta dopo essere stata persa.
+Hanno misurato la gradazione di giallo di una piuma ”singolare” prelevata da ogni uccello e l’hanno confrontata con la gradazione di giallo di una piuma ”tipica” (Typical) dello stesso uccello. Nel file piume.txt sono contenuti i dati. Lo scopo dell’indagine era quello di vedere se vi era una differenza nella gradazione. In particolare si è interessati a stimare una differenza media
+
+```{r,echo=FALSE}
+piume <- read.table("piume.txt", header = TRUE)
+piume$Diff <- piume$Typical - piume$Odd
+
+hist(piume$Diff)
+```
+
+## (a)
+Si cerchi di rispondere al quesito principale con un’analisi puramente descrittiva.
+
+## (b)
+Si descriva l’esperimento casuale e il numero di osservazioni.
+
+## (c)
+Si costruisca un intervallo di confidenza per la differenza media basato sul bootstrap.
+
+## (d)
+Si specifichi un modello statistico, le ipotesi sottostanti, lo spazio campionario e lo spazio parametrico.
+
+## (e)
+Si costruisca un intervallo di confidenza per la differenza media tenendo conto della distribuzione dei dati.
+

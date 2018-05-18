@@ -1,0 +1,25 @@
+---
+title: "C2"
+author: "filippo"
+date: "10 May 2018"
+output: pdf_document
+---
+
+# Es 2. Velocità della luce
+Considerate i dati sulla velocità della luce e supponete che questi costituiscano un campione bernoulliano da una v.c. continua $Y$.
+
+```{r}
+vluce <- scan('../speed-of-light.txt')
+vluce <- vluce[vluce>0] # Elimino errori di misurazione
+```
+
+## (a)
+Calcolate la stima per sostituzione della mediana
+
+```{r}
+quantile(vluce,prob=0.5,type=1)
+```
+
+## (b)
+Calcolate l'intervallo di confidenza secondo il bootstrap basato sulla quantità pivot.
+

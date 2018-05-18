@@ -1,0 +1,102 @@
+---
+title: "C12-Lab"
+author: "filippo"
+date: "May 3, 2018"
+output: 
+  pdf_document:
+    toc: true
+---
+
+```{r,echo=FALSE}
+library(fitdistrplus)
+
+de_bilt <- read.table(file = "../KNMI_20160831.txt", header = FALSE, skip = 12, sep = ',')
+names(de_bilt)<-c("station", "yyyymmdd", "rainfall")
+```
+
+12. Il file KNMI_20160831.txt contiene le precipitazioni giornaliere rilevate dal 1901 al 2016 nella stazione di De Bilt (Olanda)
+
+## (a) Si estraggano tutte le rilevazioni giornaliere rispetto al mese di aprile
+
+```{r}
+head(de_bilt)
+month<-substr(de_bilt$yyyymmdd, 5, 6)
+sel<-month=="04"
+y<-de_bilt$rainfall[sel]
+
+summary(y)
+
+y[y < 0]<-0
+summary(y)
+```
+
+## (b) Si analizzino i dati per evidenziare se vi sono dati anomali.
+
+
+```{r}
+boxplot(y)
+hist(y, freq = FALSE)
+x<-y[y>0]
+```
+
+## (c) Si adatti una distribuzione parametrica ai dati chiarendo le ipotesi sottostanti.
+
+## (d) Si confronti la distribuzione parametrica stimata con la distribuzione empirica.
+
+```{r}
+fitmle<-fitdist(as.numeric(na.omit(x)), distr = "exp")
+plot(fitmle)
+
+fitmlg<-fitdist(as.numeric(na.omit(x)), distr = "gamma")
+plot(fitmlg)
+```
+
+## (e) Si considerino ora le medie mensili e si ripeta l’analisi
+
+```{r}
+mat <- matrix(y,nrow=30)
+length(y)/30
+
+apply(mat,2,mean)
+#colMeans(mat)
+
+#lines(colMeans(mat))
+```
+
+Analizziamo i dati mancanti
+
+```{r}
+apply(is.na(mat),2,sum)
+ym <- apply(mat,2,mean)
+
+hist(y,prob=TRUE)
+hist(ym,prob=TRUE)
+```
+
+
+## (f) Quale teorema della probabilità entra in gioco ?
+
+Il teorema che entra in gioco è quello del limite centrale
+
+```{r}
+qqnorm(ym)
+qqline(ym)
+```
+
+Fare lo stesso con ggplot
+
+```{r}
+
+fitnrm<-fitdist(as.numeric(na.omit(ym)), distr = "norm")
+fitnrm
+plot(fitnrm)
+
+```
+
+Mi creo lo stesso grafico in alto a sx
+
+```{r}
+hist(ym,prob=TRUE,main="mio grafico",ylim = c(0,0.05))
+curve(dnorm(x, mean=fitnrm$estimate[1], sd=fitnrm$estimate[2]),from = min(na.omit(ym)), to = max(na.omit(ym)), add=TRUE,col=2 )
+```
+

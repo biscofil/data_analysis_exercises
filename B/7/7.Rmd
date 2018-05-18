@@ -1,0 +1,22 @@
+---
+title: "B7"
+author: "filippo"
+date: "5 April 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Sia $y_1, ..., y_n$ un campione bernoulliano da una v.c. Y continua e si consideri la stima della funzione di densità  
+
+$\hat{f_n}(t)=\frac{1}{n\Delta}\sum_{i=1}^{n}{K(\frac{t-y_i}{\Delta})}$
+
+dove $K(t)$ è un prefissato nucleo. Si chiede di dimostrare che:  
+
+**(a)** $\hat{f_n}(t)$ **è effettivamente una funzione di densità ovvero** $\hat{f_n}(t) > 0$ e $\int_{-\infty}^{+\infty}{\hat{f_n}(t)dt}=1$  
+
+
+**(b)** $\int_{-\infty}^{+\infty}{t\hat{f_n}(t)dt}=y$  
+

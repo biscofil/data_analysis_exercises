@@ -1,0 +1,19 @@
+---
+title: "c13"
+author: "filippo"
+date: "18 May 2018"
+output: pdf_document
+---
+
+# Es 13.
+Si vuole studiare l’affidabilità di un componente elettronico, cioè la probabilità che esso superi un tempo di missione prefissato. 
+Allo scopo, vengono testati 420 componenti. Di questi 25 non superano il tempo di missione.
+
+## (a)
+Stimare la probabilità che un componente superi il tempo di missione;
+
+## (b)
+costruire un intervallo di confidenza, ad un livello del 97%, della probabilità suddetta.
+
+## (c)
+costruite un intervallo di confidenza, ad un livello del 97%, della probabilità suddetta con il metodo bootstrap.

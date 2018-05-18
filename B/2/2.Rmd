@@ -1,0 +1,62 @@
+---
+title: "B.2"
+author: "filippo"
+date: "3 April 2018"
+output:
+  pdf_document:
+    keep_tex: no
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Sia $Y_1,...,Y_n$ un campione **bernoulliano** (campionamento casuale con ripetizione) da una v.c. $N(\mu,\sigma^2)$ e si voglia stimare $\mu$. Per questo vengono considerati due stimatori   
+$\hat{\mu}_{A,n} = \sum_{i=1}^{n-1} Y_i/n$ e   
+$\hat{\mu}_{B,n} = Y_1/n + (n-1)Y_n/n$.   
+Nel seguito si suppone che $\sigma^2$ sia noto.
+
+**Calcolate la distorsione dei due stimatori.**
+
+Ricordiamo che la distorsione di uno stimatore $\hat{\theta}_n$ equivale a $bias(\hat{\theta}_n) = E(\hat{\theta}_n)-\theta$. Se $bias(\hat{\theta}_n)$ è nullo, lo stimatore è non distorto.  
+
+Entrambe le v.c. sono Normali, di cui ricordiamo **la proprietà**: $E(N(\mu,\sigma^2)) = \mu$
+
+Analizzo $\hat{\mu}_{A,n}$:  
+$\hat{\mu}_{A,n} = \sum_{i=1}^{n-1} Y_i/n$  
+$E(\hat{\mu}_{A,n}) = \frac{\sum_{i=1}^{n-1} E(Y_i)}{n} = \frac{\sum_{i=1}^{n-1} \mu}{n} = \frac{(n-1)\mu}{n} = \frac{n\mu}{n} - \frac{\mu}{n} = \mu - \frac{\mu}{n}$  
+$bias(\hat{\mu}_{A,n}) = \mu - \frac{\mu}{n} - \mu = - \frac{\mu}{n}$
+Il primo stimatore risulta quindi distorto.
+
+Analizzo $\hat{\mu}_{B,n}$:  
+$\hat{\mu}_{B,n} = Y_1/n + (n-1)Y_n/n$  
+$\hat{\mu}_{B,n} = \frac{Y_1}{n} + \frac{(n-1)Y_n}{n} = \frac{Y_1 + Y_n(n-1)}{n}$  
+$E(\hat{\mu}_{B,n}) = \frac{E(Y_1) + E(Y_n)(n-1)}{n} = \frac{\mu+\mu(n-1)}{n} = \frac{\mu}{n} + \frac{n\mu}{n} - \frac{\mu}{n} = \frac{n\mu}{n} = \mu$  
+$bias(\hat{\mu}_{B,n}) = \mu - \mu = 0$
+Il secondo stimatore risulta invece non distorto.
+
+**Calcolate il loro errore standard.**  
+Entrambe le v.c. sono Normali, di cui ricordiamo **la proprietà**: $Var(N(\mu,\sigma^2)) = \sigma^2$  
+
+Ricordiamo che l'errore standard equivale a $se(\hat{\theta}_n)=\sqrt{Var(\hat{\theta}_n)}$ 
+
+Analizzo $\hat{\mu}_{A,n}$:  
+$se(\hat{\mu}_{A,n})=\sqrt{Var(\hat{\mu}_{A,n})}=\sqrt{Var(\frac{\sum_{i=1}^{n-1}Y_i}{n})} = \sqrt{\frac{\sum_{i=1}^{n-1}Var(Y_i)}{n^2}} = \sqrt{\frac{\sum_{i=1}^{n-1}\sigma^2}{n^2}} = \sqrt{\frac{(n-1)\sigma^2}{n^2}} = \sqrt{\frac{\sigma^2}{n}-\frac{\sigma^2}{n^2}}$  
+
+Analizzo $\hat{\mu}_{B,n}$:  
+$se(\hat{\mu}_{B,n})=\sqrt{Var(\hat{\mu}_{B,n})}=\sqrt{Var(\frac{Y_1 + Y_n(n-1)}{n})} = \sqrt{\frac{Var(Y_1) + Var(Y_n)(n-1)}{n^2}} = \sqrt{\frac{\sigma^2 + \sigma^2(n-1)}{n^2}} = \sqrt{\frac{n\sigma^2}{n^2}} = \sqrt{\frac{\sigma^2}{n}}$  
+
+**Fornite una stima del loro errore standard.**  
+Essendo $\sigma$ noto,  
+$\hat{se}(\hat{\mu}_{A,n})=\sqrt{\frac{\sigma^2}{n}-\frac{\sigma^2}{n^2}}$  
+$\hat{se}(\hat{\mu}_{B,n})=\sqrt{\frac{\sigma^2}{n}}$  
+
+**Calcolate il loro errore quadratico medio.**  
+$mse(\hat{\theta}_n) = E[\hat{\theta}_n-\theta]^2 = se(\hat{\theta}_n)^2+bias(\hat{\theta}_n)^2$  
+
+$mse(\hat{\mu}_{A,n})= (\sqrt{\frac{\sigma^2}{n}-\frac{\sigma^2}{n^2}})^2 + (-\frac{\mu}{n})^2 = \frac{\sigma^2}{n}-\frac{\sigma^2}{n^2} + (\frac{\mu}{n})^2$ 
+
+$mse(\hat{\mu}_{B,n})=\sqrt{\frac{\sigma^2}{n}-\frac{\sigma^2}{n^2}}^2+0 = \frac{\sigma^2}{n}-\frac{\sigma^2}{n^2}$  
+

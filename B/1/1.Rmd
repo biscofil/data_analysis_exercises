@@ -1,0 +1,76 @@
+---
+title: '1'
+author: "filippo"
+date: "3 April 2018"
+output:
+  pdf_document:
+    keep_tex: no
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**1. Considerate il lancio di due dati e considerate la somma delle due facce. Sia Y la v.c. ‘somma delle due facce’**
+
+**(a) Individuate lo spazio campionario.**
+
+Lo spazio campionario della v.c. "somma delle due facce" concide con l'insieme
+```{r}
+s <- 2:12
+```
+
+**(b) Costruite un programma in R che estragga un campione bernoulliano di numerosità n dalla v.c. somma delle due facce.**
+
+
+**(c) Calcolate la distribuzione di probabilità di Y.**
+
+La funzione di densità della v.c è
+```{r}
+q <- matrix(rep(1:6,6), ncol=6)
+q <- q + t(q)
+q <- table(q)
+q
+
+p <- q / 36
+round(p,2)
+```
+
+```{r}
+plot(p, xlim = c(2, 12))
+```
+
+**(d) Calcolate la distribuzione di probabilità empirica di Y, con n = 50.**
+```{r}
+n1 <- 50
+y1 <- sample(s,
+             size = n1,
+             replace = TRUE,
+             prob = p)
+table(y1)
+```
+**(e) Confrontate le due distribuzioni.**
+
+**(f) Calcolate la funzione di ripartizione e la funzione di ripartizione empirica e sovrapponetele in un’unico grafico.**
+
+```{r, echo=FALSE}
+plot(sort(y1))
+plot(cumsum(p), xlim = c(2, 12))
+```
+
+**(g) Commentate quanto accade se n = 500.**
+```{r}
+n2 <- 500
+y2 <- sample(s,
+             size = n2,
+             replace = TRUE,
+             prob = p)
+table(y2)
+```
+
+```{r, echo=FALSE}
+plot(sort(y2))
+```
+

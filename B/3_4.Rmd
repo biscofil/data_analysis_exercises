@@ -1,0 +1,94 @@
+---
+title: "B3_4"
+author: "filippo"
+date: "4 April 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Esercizio 3. 
+
+Siano $(Y_1,..., Y_4 )$, quattro v.c. di Bernoulli indipendenti con probabilità di successo $Pr(Y_i = 1) = \theta, 0 < \theta < 1.$ Si considerino i seguenti stimatori di $\theta$:
+
+$T_1 = \frac{2}{3}Y_1 + \frac{1}{3}Y_4$  
+$T_2 = 3Y_2 - 2Y_3$  
+
+**(a) Dite quale dei due stimatori risulta preferibile.**  
+
+Ricordiamo che $E(Bern(\theta)) = \theta$  
+
+$bias(T_1) = E(T_1) - \theta$
+$E(T_1) = E(\frac{2}{3}Y_1 + \frac{1}{3}Y_4) = \frac{2}{3}E(Y_1) + \frac{1}{3}E(Y_4) = \frac{2}{3}\theta + \frac{1}{3}\theta = \theta(\frac{2}{3} + \frac{1}{3}) = \theta$  
+Notiamo quindi che il primo stimatore non è distorto  
+
+$bias(T_2) = E(T_2) - \theta$  
+$E(T_2) = E(3Y_2 - 2Y_3) = 3E(Y_2) - 2E(Y_3) = 3\theta - 2\theta = \theta$  
+Notiamo che anche il secondo stimatore è non distorto
+
+Procediamo al confronto tramite analisi degli errori:  
+
+Ricordiamo che $Var(Bern(\theta)) = \theta(1-\theta)$
+
+$se(T_1) = \sqrt{Var(\frac{2}{3}Y_1 + \frac{1}{3}Y_4)}$
+$= \sqrt{\frac{2}{3}^2Var(Y_1) + \frac{1}{3}^2Var(Y_4)}$
+$= \sqrt{\frac{4}{9}\theta(1-\theta) + \frac{1}{9}\theta(1-\theta)}$
+$= \sqrt{\theta(1-\theta)(\frac{4}{9}+\frac{1}{9})} = \sqrt{\frac{5}{9}\theta(1-\theta)}$
+
+$se(T_2) = \sqrt{Var(3Y_2 - 2Y_3)} = \sqrt{9\theta(1-\theta) + 4\theta(1-\theta)} = \sqrt{13\theta(1-\theta)}$  
+
+$T_1$ ha un errore standard minore
+
+**(b) Mostrate che lo stimatore** $T_3 = (2-a)T_1 + (a-1)T_2$ **è non distorto per qualsiasi valore di a.**  
+$T_3 = (2-a)(\frac{2}{3}Y_1 + \frac{1}{3}Y_4) + (a-1)(3Y_2 - 2Y_3)$  
+
+$bias(T_3) = E(T_3) - \theta$  
+$E(T_3) = (2-a)(\frac{2}{3}E(Y_1) + \frac{1}{3}E(Y_4)) + (a-1)(3E(Y_2) - 2E(Y_3)) = (2-a)(\frac{2}{3}\theta + \frac{1}{3}\theta + (a-1)(3\theta - 2\theta)) = (2-a)(\theta)+(a-1)(\theta) = (\theta)(2-a+a-1) = \theta$
+
+**(c) Trovate il valore di a che rende minima la varianza di questo stimatore.**  
+$Var(T_3)=\frac{4-a}{3}^2Var(Y_1) + \frac{2-a}{3}^2Var(Y_4) + (3a-3)^2Var(Y_2) - (2a-2)^2Var(Y_3)$  
+$Var(T_3)=\frac{4-a}{3}^2\theta(1-\theta) + \frac{2-a}{3}^2\theta(1-\theta) + (3a-3)^2\theta(1-\theta) + (2a-2)^2\theta(1-\theta)$
+
+$Var(T_3)=\theta(1-\theta)(\frac{4-a}{3}^2 + \frac{2-a}{3}^2 + (3a-3)^2 + (2a-2)^2)$  
+$Var(T_3)=\theta(1-\theta)(\frac{16-8a+a^2}{9} + \frac{4-4a+a^2}{9} + (9a^2-18a+9) + (4a^2-8a+4))$  
+$Var(T_3)=\theta(1-\theta)(\frac{16-8a+a^2+4-4a+a^2}{9} + (9a^2-18a+9) + (4a^2-8a+4))$  
+$Var(T_3)=\theta(1-\theta)(\frac{2(a^2-6a+10)}{9} + 13(a^2-2a+1))$  
+
+
+# Esercizio 4. 
+Riprendete l’esercizio precedente e fissate $n = 50, \mu = 4, \sigma = 1$. Nel seguito utilizzate R.
+
+```{r}
+n <- 50
+mu <- 4
+sigma <-1
+
+```
+
+**Simulate m = 1000 campioni di numerosità n. Ogni campione sarà denotato con** $(y_1^{(j)},...,y_n^{(j)})', 1\leq j\leq m$
+
+```{r}
+m <- 1000
+
+#sample(1,size=m,x=c(0,1),prob=c(1-mu,mu))
+
+```
+
+**Per ogni campione** $(y_1^{(j)},...,y_n^{(j)})'$ **calcolate le due stime**
+
+**Calcolate le distorsioni ottenute in simulazione e confrontatele con quelle teoriche si commentino i risultati.**
+
+**Si calcolino le varianze e lo scarto quadratico medio di e si commentino i risultati.**
+
+**Si calcoli sulla base di una misura dell’errore quadratico medio e si commentino i risultati.**
+
+**Riflettete sul ruolo di n e m. Cosa ottenete al variare dei due valori?**
+
+
+```{r}
+
+
+
+```
