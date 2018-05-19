@@ -1,25 +1,56 @@
 ---
-title: "C1""
+title: "C1"
 author: "filippo"
 date: "10 May 2018"
 output: pdf_document
 ---
 
 # Es 1. 
-Sia dato un campione bernoulliano $Y_1 , \ldots , Y_n , n \geq 2$, da una variabile casuale Y uniforme nell’intervallo $(0, \Theta), \Theta > 0$.
+Sia dato un campione bernoulliano $Y_1 , \ldots , Y_n , n \geq 2$, da una variabile casuale $Y$ uniforme nell’intervallo $(0, \Theta), \Theta > 0$.
 
 ## (a)
 Trovare lo stimatore di $\Theta$ secondo il metodo dei momenti.
 
+$$T_1 = 2\frac{\sum_{i=1}^{n}{Y_i}}{n}$$
+
 ## (b)
 Sia $T_1$ lo stimatore calcolato al punto precedente, calcolare $EQM(T_1)$.
+
+$$E(T_1)=\theta$$
+Il valore atteso di $T_1$ è $\theta$, è quindi non distorto.
+$$Var(T_1) = \frac{\theta^2}{3n}$$
+Poichè $T_1$ è non distorto, l'errore quadratico medio coiciderà con la sua varianza.
+$$EQM(T_1) = \frac{\theta^2}{3n}$$
 
 ## (c)
 Mostrare che lo stimatore è consistente.
 
+$$\lim_{n\to\infty} \frac{\theta^2}{3n} = 0$$
+
 ## (d)
-Trovare la costante a per cui lo stimatore
+Trovare la costante $a$ per cui lo stimatore
 $$T_2 = \frac{Y_1 + aY_n}{n}$$ è uno stimatore non distorto.
+
+$$E(T_2) = \theta + a\theta - 2n\theta \rightarrow a = 2n-1$$
 
 ## (e)
 Se $T_2$ è lo stimatore non distorto, mostrare quale stimatore tra $T_1$ e $T_2$ è più efficiente.
+
+$$T_2 = \frac{Y_1 + (2n-1)Y_n}{n}$$
+
+$$Var(T_2) = \frac{\theta^2(2n^2-2n+1)}{6n^2}$$
+$$Se(T_1) = \theta\sqrt{\frac{1}{3n}}$$
+
+$$Se(T_2) = \frac{\theta}{n}\sqrt{\frac{2n^2-2n+1}{6}}$$
+
+Lo stimatore $T_1$ ha un errore standard asintoticamente minore, e di conseguenza si avvicina prima al valore nullo
+
+```{r}
+theta <- 5
+se.t1 <- function(x){theta * sqrt(1/(3*x))}
+se.t2 <- function(x){theta/x * sqrt((2*(x^2) - 2*x + 1)/6)}
+
+curve(se.t1(x), from=0, to=10,col="red",ylab = "Standard Error",xlab = "n")
+curve(se.t2(x), from=0, to=10, add=TRUE,col="green")
+```
+
