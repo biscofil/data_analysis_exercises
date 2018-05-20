@@ -5,27 +5,136 @@ date: "18 May 2018"
 output: pdf_document
 ---
 
+```{r,echo=FALSE}
+library(ggplot2)
+library(fitdistrplus)
+```
+
 # Esercizio 15. 
 I file ```haliburton.txt``` e ```macdonalds.txt``` contengono i rendimenti mensili sulle azioni di queste due compagnie dal 1975 al 1999.
+
+```{r,echo=FALSE}
+haliburton <- scan("../haliburton.txt")
+macdonalds <- scan("../macdonalds.txt")
+```
 
 ## (a)
 Si analizzino i dati per evidenziare se vi sono dati anomali.
 
+```{r}
+hist(haliburton)
+hist(macdonalds)
+```
+
 ## (b)
 Si adatti una distribuzione parametrica ai dati chiarendo le ipotesi sottostanti.
 
+```{r}
+fit.haliburton <- fitdist(haliburton,"norm")
+fit.macdonalds <- fitdist(macdonalds,"norm")
+```
+
 ## (c)
 Si confronti la distribuzione parametrica stimata con la distribuzione empirica.
+
+```{r}
+p <- ggplot(data.frame(y=haliburton),aes(y))
+p <- p + stat_density()
+p <- p + stat_function(fun=dnorm, args = list(fit.haliburton$estimate[1],fit.haliburton$estimate[2]),col="red")
+p
+
+p <- ggplot(data.frame(y=macdonalds),aes(y))
+p <- p + stat_density()
+p <- p + stat_function(fun=dnorm, args = list(fit.macdonalds$estimate[1],fit.macdonalds$estimate[2]),col="red")
+p
+```
 
 ## (d)
 In finanza si è interessati alla volatilità del titolo misurata attraverso la sua varianza e il suo scarto interquartile. 
 Si calcoli una stima delle due quantità.
 
+
+```{r}
+
+haliburton.mu.hat <- mean(haliburton) #stima plug in
+haliburton.var.hat <- mean(haliburton^2) - haliburton.mu.hat^2
+haliburton.sigma.hat <- sqrt(haliburton.var.hat)
+haliburton.iqr.hat <- quantile(haliburton, 0.75) - quantile(haliburton,0.25)
+
+macdonalds.mu.hat <- mean(macdonalds)
+macdonalds.var.hat <- mean(macdonalds^2) - macdonalds.mu.hat^2
+macdonalds.sigma.hat <- sqrt(macdonalds.var.hat)
+macdonalds.iqr.hat <- quantile(macdonalds, 0.75) - quantile(macdonalds,0.25)
+```
+
 ## (e)
 Quale delle due compagnie risulta più variabile ?
+
+haliburton risulta avere una varianza maggiore
+
+```{r}
+haliburton.var.hat
+macdonalds.var.hat
+```
 
 ## (f)
 Si utilizzi il bootstrap non parametrico per ottenere un intervallo di confidenza per lo scarto interquartile.
 
+```{r}
+alpha <- 0.05
+B <- 1000
+
+haliburton.n <- length(haliburton)
+macdonalds.n <- length(macdonalds)
+
+iqr <- function(y){
+  return(quantile(y,0.75) - quantile(y,0.25))
+}
+
+#halibruton
+
+haliburton.boot.values <- matrix(sample(haliburton,B*haliburton.n,replace = TRUE),ncol = haliburton.n)
+haliburton.boot.values.vet <- apply(haliburton.boot.values,1,iqr)
+haliburton.boot.iqr <- mean(haliburton.boot.values.vet)
+
+haliburton.boot.int <- quantile(haliburton.boot.values.vet,c(alpha/2,1-alpha/2))
+haliburton.boot.int
+
+#macdonalds
+
+macdonalds.boot.values <- matrix(sample(macdonalds,B*macdonalds.n,replace = TRUE),ncol = macdonalds.n)
+macdonalds.boot.values.vet <- apply(macdonalds.boot.values,1,iqr)
+macdonalds.iqr.hat <- mean(macdonalds.boot.values.vet)
+
+macdonalds.boot.int <- quantile(macdonalds.boot.values.vet,c(alpha/2,1-alpha/2))
+macdonalds.boot.int
+
+```
+
 ## (g)
 Si utilizzi il bootstrap parametrico per ottenere un intervallo di confidenza per lo scarto interquartile.
+
+
+```{r}
+
+#halibruton
+
+haliburton.boot.values <- matrix(rnorm(B*haliburton.n,mean = fit.haliburton$estimate[1],sd =fit.haliburton$estimate[2] ),ncol = haliburton.n)
+haliburton.boot.values.vet <- apply(haliburton.boot.values,1,iqr)
+haliburton.boot.iqr <- mean(haliburton.boot.values.vet)
+
+haliburton.boot.int <- quantile(haliburton.boot.values.vet,c(alpha/2,1-alpha/2))
+haliburton.boot.int
+
+#macdonalds
+
+macdonalds.boot.values <- matrix(rnorm(B*macdonalds.n,mean = fit.macdonalds$estimate[1],sd =fit.macdonalds$estimate[2] ),ncol = macdonalds.n)
+macdonalds.boot.values.vet <- apply(macdonalds.boot.values,1,iqr)
+macdonalds.boot.iqr <- mean(macdonalds.boot.values.vet)
+
+macdonalds.boot.int <- quantile(macdonalds.boot.values.vet,c(alpha/2,1-alpha/2))
+macdonalds.boot.int
+
+```
+
+
