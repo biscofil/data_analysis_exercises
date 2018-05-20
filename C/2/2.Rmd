@@ -9,7 +9,7 @@ output: pdf_document
 Considerate i dati sulla velocità della luce e supponete che questi costituiscano un campione bernoulliano da una v.c. continua $Y$.
 
 ```{r}
-vluce <- scan('../speed-of-light.txt')
+vluce <- scan('../../speed-of-light.txt')
 vluce <- vluce[vluce>0] # Elimino errori di misurazione
 ```
 
@@ -22,4 +22,19 @@ quantile(vluce,prob=0.5,type=1)
 
 ## (b)
 Calcolate l'intervallo di confidenza secondo il bootstrap basato sulla quantità pivot.
+
+```{r}
+alpha <- 0.05
+B <- 1000
+n <- length(vluce)
+
+median.hat <- median(vluce)
+
+boot.values <- matrix(sample(vluce,B*n,replace=TRUE),ncol = n)
+boot.media.hat <- apply(boot.values,1,median)
+
+boot.median.conf <- 2 * median.hat - c(quantile(boot.media.hat, 1-alpha/2), quantile(boot.media.hat, alpha/2))
+boot.median.conf 
+
+```
 

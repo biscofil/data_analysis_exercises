@@ -25,3 +25,4 @@ $$
 
 ## (b)
 Costruite gli intervalli di confidenza per $T_1,T_2$ basati sui percentili
+
